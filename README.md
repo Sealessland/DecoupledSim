@@ -1,1 +1,1 @@
-![[Pasted image 20250727202629.png]]
+![我😍UESTC](./Pasted%20image%2020250727202629.png)
