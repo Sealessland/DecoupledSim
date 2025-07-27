@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CopilotDiffPersistence">
+    <option name="pendingDiffs">
+      <map>
+        <entry key="$PROJECT_DIR$/CMakeLists.txt">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/CMakeLists.txt" />
+              <option name="originalContent" value="cmake_minimum_required(VERSION 3.31)&#10;project(AdaptSim)&#10;&#10;find_program(CCACHE_PROGRAM ccache)&#10;if(CCACHE_PROGRAM)&#10;    message(STATUS &quot;找到 ccache，将用于加速编译。&quot;)&#10;    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})&#10;else()&#10;    message(STATUS &quot;未找到 ccache。&quot;)&#10;endif()&#10;&#10;set(CMAKE_CXX_STANDARD 26)&#10;&#10;include_directories(${PROJECT_SOURCE_DIR}/include)&#10;include_directories(${PROJECT_SOURCE_DIR}/include/v_include)&#10;link_directories(${PROJECT_SOURCE_DIR}/lib)&#10;&#10;file(GLOB SRC_FILES src/*.cpp)&#10;add_library(AdaptSimLib ${SRC_FILES})&#10;add_executable(AdaptSim main.cpp)&#10;target_link_libraries(AdaptSim PRIVATE AdaptSimLib)&#10;&#10;# 测试目标&#10;enable_testing()&#10;add_executable(test_example tests/test_example.cpp)&#10;target_link_libraries(test_example PRIVATE AdaptSimLib)&#10;target_include_directories(test_example PRIVATE ${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/include/v_include)&#10;add_test(NAME ExampleTest COMMAND test_example)&#10;&#10;# 添加一个自定义目标来调用 Makefile 中的 commit 功能&#10;# 使用方法: cmake --build &lt;build_dir&gt; --target git_commit&#10;add_custom_target(&#10;    git_commit&#10;    COMMAND ${CMAKE_MAKE_PROGRAM} commit msg=&quot;Commit from CMake build&quot;&#10;    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}&#10;    COMMENT &quot;Calling Makefile's commit target to create a git commit&quot;&#10;    VERBATIM&#10;)&#10;" />
+              <option name="updatedContent" value="cmake_minimum_required(VERSION 3.31)&#10;project(AdaptSim)&#10;&#10;find_program(CCACHE_PROGRAM ccache)&#10;if(CCACHE_PROGRAM)&#10;    message(STATUS &quot;找到 ccache，将用于加速编译。&quot;)&#10;    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})&#10;else()&#10;    message(STATUS &quot;未找到 ccache。&quot;)&#10;endif()&#10;&#10;set(CMAKE_CXX_STANDARD 26)&#10;&#10;include_directories(${PROJECT_SOURCE_DIR}/include)&#10;include_directories(${PROJECT_SOURCE_DIR}/include/v_include)&#10;link_directories(${PROJECT_SOURCE_DIR}/lib)&#10;&#10;file(GLOB SRC_FILES src/*.cpp)&#10;add_library(AdaptSimLib ${SRC_FILES})&#10;add_executable(AdaptSim main.cpp)&#10;target_link_libraries(AdaptSim PRIVATE AdaptSimLib)&#10;&#10;# 测试目标&#10;enable_testing()&#10;add_executable(test_example tests/test_example.cpp)&#10;target_link_libraries(test_example PRIVATE AdaptSimLib)&#10;target_include_directories(test_example PRIVATE ${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/include/v_include)&#10;add_test(NAME ExampleTest COMMAND test_example)&#10;&#10;# 添加综合测试目标&#10;add_executable(test_comprehensive tests/test_comprehensive.cpp)&#10;target_link_libraries(test_comprehensive PRIVATE AdaptSimLib)&#10;target_include_directories(test_comprehensive PRIVATE ${PROJECT_SOURCE_DIR}/include ${PROJECT_SOURCE_DIR}/include/v_include)&#10;add_test(NAME ComprehensiveTest COMMAND test_comprehensive)&#10;&#10;# 添加一个自定义目标来调用 Makefile 中的 commit 功能&#10;# 使用方法: cmake --build &lt;build_dir&gt; --target git_commit&#10;add_custom_target(&#10;    git_commit&#10;    COMMAND ${CMAKE_MAKE_PROGRAM} commit msg=&quot;Commit from CMake build&quot;&#10;    WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}&#10;    COMMENT &quot;Calling Makefile's commit target to create a git commit&quot;&#10;    VERBATIM&#10;)" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/Makefile">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/Makefile" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/include/AdaptSim/Example.h">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/include/AdaptSim/Example.h" />
+              <option name="updatedContent" value="#pragma once&#10;&#10;namespace AdaptSim {&#10;class Example {&#10;public:&#10;    Example();&#10;    int add(int a, int b);&#10;};&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/include/v_include/VExample.h">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/include/v_include/VExample.h" />
+              <option name="originalContent" value="#pragma once&#10;&#10;namespace v_include {&#10;class VExample {&#10;public:&#10;    VExample();&#10;    int mul(int a, int b);&#10;};&#10;}&#10;" />
+              <option name="updatedContent" value="#pragma once&#10;&#10;namespace v_include {&#10;class VExample {&#10;public:&#10;    VExample();&#10;    int mul(int a, int b);&#10;};&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/lib/README.md">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/lib/README.md" />
+              <option name="updatedContent" value="This directory is for pre-compiled libraries (.a, .so).&#10;You can link against libraries in this directory by adding the following to CMakeLists.txt:&#10;&#10;target_link_libraries(YourTarget PRIVATE your_lib_name)&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/main.cpp">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/main.cpp" />
+              <option name="originalContent" value="#include &lt;iostream&gt;&#10;&#10;// TIP 要&lt;b&gt;Run&lt;/b&gt;代码，请按 &lt;shortcut actionId=&quot;Run&quot;/&gt; 或点击装订区域中的 &lt;icon src=&quot;AllIcons.Actions.Execute&quot;/&gt; 图标。&#10;int main()&#10;{&#10;    // TIP 当文本光标位于 &lt;b&gt;lang&lt;/b&gt; 变量名称处时，按 &lt;shortcut actionId=&quot;RenameElement&quot;/&gt; 可以查看 CLion 如何帮助您重命名该变量。&#10;    auto lang = &quot;C++&quot;;&#10;    std::cout &lt;&lt; &quot;Hello and welcome to &quot; &lt;&lt; lang &lt;&lt; &quot;!\n&quot;;&#10;&#10;    for (int i = 1; i &lt;= 5; i++)&#10;    {&#10;        // TIP 按 &lt;shortcut actionId=&quot;Debug&quot;/&gt; 开始调试代码。我们已为您设置了一个 &lt;icon src=&quot;AllIcons.Debugger.Db_set_breakpoint&quot;/&gt; 断点，但您可以随时按 &lt;shortcut actionId=&quot;ToggleLineBreakpoint&quot;/&gt; 添加更多断点。&#10;        std::cout &lt;&lt; &quot;i = &quot; &lt;&lt; i &lt;&lt; std::endl;&#10;    }&#10;&#10;    return 0;&#10;    // TIP 请访问 &lt;a href=&quot;https://www.jetbrains.com/help/clion/&quot;&gt;jetbrains.com/help/clion/&lt;/a&gt; 查看 CLion 帮助。此外，您还可以从主菜单中选择“帮助 | 学习 IDE 功能”，尝试 CLion 的交互式课次。&#10;}" />
+              <option name="updatedContent" value="#include &quot;AdaptSim/Example.h&quot;&#10;#include &quot;v_include/VExample.h&quot;&#10;#include &lt;iostream&gt;&#10;&#10;// TIP 要&lt;b&gt;Run&lt;/b&gt;代码，请按 &lt;shortcut actionId=&quot;Run&quot;/&gt; 或点击装订区域中的 &lt;icon src=&quot;AllIcons.Actions.Execute&quot;/&gt; 图标。&#10;int main()&#10;{&#10;    std::cout &lt;&lt; &quot;--- Running Main Application ---&quot; &lt;&lt; std::endl;&#10;&#10;    AdaptSim::Example ex;&#10;    std::cout &lt;&lt; &quot;Calling AdaptSim::Example: 5 + 3 = &quot; &lt;&lt; ex.add(5, 3) &lt;&lt; std::endl;&#10;&#10;    v_include::VExample vex;&#10;    std::cout &lt;&lt; &quot;Calling v_include::VExample: 5 * 3 = &quot; &lt;&lt; vex.mul(5, 3) &lt;&lt; std::endl;&#10;&#10;    std::cout &lt;&lt; &quot;--- Main Application Finished ---&quot; &lt;&lt; std::endl;&#10;&#10;    // TIP 当文本光标位于 &lt;b&gt;lang&lt;/b&gt; 变量名称处时，按 &lt;shortcut actionId=&quot;RenameElement&quot;/&gt; 可以查看 CLion 如何帮助您重命名该变量。&#10;    auto lang = &quot;C++&quot;;&#10;    std::cout &lt;&lt; &quot;Hello and welcome to &quot; &lt;&lt; lang &lt;&lt; &quot;!\n&quot;;&#10;&#10;    for (int i = 1; i &lt;= 5; i++)&#10;    {&#10;        // TIP 按 &lt;shortcut actionId=&quot;Debug&quot;/&gt; 开始调试代码。我们已为您设置了一个 &lt;icon src=&quot;AllIcons.Debugger.Db_set_breakpoint&quot;/&gt; 断点，但您可以随时按 &lt;shortcut actionId=&quot;ToggleLineBreakpoint&quot;/&gt; 添加更多断点。&#10;        std::cout &lt;&lt; &quot;i = &quot; &lt;&lt; i &lt;&lt; std::endl;&#10;    }&#10;&#10;    return 0;&#10;    // TIP 请访问 &lt;a href=&quot;https://www.jetbrains.com/help/clion/&quot;&gt;jetbrains.com/help/clion/&lt;/a&gt; 查看 CLion 帮助。此外，您还可以从主菜单中选择“帮助 | 学习 IDE 功能”，尝试 CLion 的交互式课次。&#10;}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/Example.cpp">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/Example.cpp" />
+              <option name="updatedContent" value="#include &quot;AdaptSim/Example.h&quot;&#10;&#10;namespace AdaptSim {&#10;Example::Example() {}&#10;&#10;int Example::add(int a, int b) {&#10;    return a + b;&#10;}&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/src/VExample.cpp">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/src/VExample.cpp" />
+              <option name="updatedContent" value="#include &quot;v_include/VExample.h&quot;&#10;&#10;namespace v_include {&#10;VExample::VExample() {}&#10;&#10;int VExample::mul(int a, int b) {&#10;    return a * b;&#10;}&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/tests/test_comprehensive.cpp">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/tests/test_comprehensive.cpp" />
+              <option name="updatedContent" value="#include &quot;AdaptSim/Example.h&quot;&#10;#include &quot;v_include/VExample.h&quot;&#10;#include &lt;cassert&gt;&#10;#include &lt;iostream&gt;&#10;&#10;// 这个测试程序旨在调用项目中定义的所有主要组件，&#10;// 以确保它们能够被正确地包含、编译和链接。&#10;&#10;int main() {&#10;    std::cout &lt;&lt; &quot;--- Running Comprehensive Project Test ---&quot; &lt;&lt; std::endl;&#10;&#10;    // 1. 测试来自 include/AdaptSim/ 和 src/ 的 Example 类&#10;    AdaptSim::Example ex;&#10;    int sum = ex.add(10, 20);&#10;    std::cout &lt;&lt; &quot;Testing AdaptSim::Example: 10 + 20 = &quot; &lt;&lt; sum &lt;&lt; std::endl;&#10;    assert(sum == 30);&#10;&#10;    // 2. 测试来自 include/v_include/ 和 src/ 的 VExample 类&#10;    v_include::VExample vex;&#10;    int product = vex.mul(10, 20);&#10;    std::cout &lt;&lt; &quot;Testing v_include::VExample: 10 * 20 = &quot; &lt;&lt; product &lt;&lt; std::endl;&#10;    assert(product == 200);&#10;&#10;    // 如果程序能运行到这里并且没有触发 assert，说明基本功能正常。&#10;    // lib/ 目录的测试通常涉及链接一个预编译的库，&#10;    // 这里我们通过链接 AdaptSimLib (由 src/*.cpp 编译而来) 间接测试了库的链接能力。&#10;&#10;    std::cout &lt;&lt; &quot;--- Comprehensive Project Test Passed! ---&quot; &lt;&lt; std::endl;&#10;&#10;    return 0;&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/tests/test_example.cpp">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/tests/test_example.cpp" />
+              <option name="updatedContent" value="#include &quot;AdaptSim/Example.h&quot;&#10;#include &lt;cassert&gt;&#10;#include &lt;iostream&gt;&#10;&#10;int main() {&#10;    AdaptSim::Example ex;&#10;    assert(ex.add(2, 3) == 5);&#10;    std::cout &lt;&lt; &quot;Test passed!&quot; &lt;&lt; std::endl;&#10;    return 0;&#10;}&#10;" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
