@@ -1,1 +1,2 @@
-![我😍UESTC](./Pasted%20image%2020250727202629.png)
+![我是UESTC](./Pasted%20image%2020250727202629.png)
+# UESTC-2025

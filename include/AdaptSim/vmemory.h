@@ -34,6 +34,7 @@ namespace memory
 
         // 从文件加载内容到内存
         bool load_from_file(const std::string& filename, uint32_t offset);
+        bool load_default_img(uint32_t offset);
     };
 
     // 提供一个全局的内存访问点
