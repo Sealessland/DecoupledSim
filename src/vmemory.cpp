@@ -101,6 +101,11 @@ namespace memory
     bool VMem::load_default_img(uint32_t offset)
     {
         const uint32_t default_img[] = {
+            0x00d62023,  // sw a3, 0(a2)
+
+            0xff010113,  // addi sp, sp, 0xff0
+
+
             0x87fff137,  // lui sp, 0x87fff
             0xff010113,  // addi sp, sp, 0xff0
             0xa0000537,  // lui a0, 0xa0000

@@ -82,7 +82,7 @@ namespace multiple {
         // 持续翻转时钟直到指令完成信号 `io_inst_done` 为高
         do {
             toggle_clock();
-        } while (!Top->io_inst_done);
+        } while (1);
     }
 
     int Sim_core::run_inst(int num_inst) {
