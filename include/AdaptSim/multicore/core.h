@@ -48,6 +48,7 @@ namespace multiple {
         CoreDebugInfo get_debug_info() const;
         void run_inst_once();
         int run_inst(int num_inst);
+        int run_cycle(int num_cycle);
     };
 
 } // namespace multiple

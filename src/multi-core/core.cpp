@@ -92,5 +92,12 @@ namespace multiple {
         }
         return i; // 返回实际执行的指令数
     }
+    int Sim_core::run_cycle(int num_cycle) {
+        int i = 0;
+        for (; i < num_cycle; i++) {
+            toggle_clock();
+        }
+        return i; // 返回实际执行的周期数
+    }
 
 } // namespace multiple

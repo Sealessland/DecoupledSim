@@ -20,15 +20,6 @@
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/include/AdaptSim/multicore/core.h">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/include/AdaptSim/multicore/core.h" />
-              <option name="originalContent" value="//&#10;// Created by sealessland on 2025/7/27.&#10;//&#10;&#10;#ifndef CORE_H&#10;#define CORE_H&#10;&#10;namespace multiple {&#10;&#10;class core {&#10;&#10;};&#10;&#10;} // multiple&#10;&#10;#endif //CORE_H&#10;" />
-              <option name="updatedContent" value="//&#10;// Created by sealessland on 2025/7/27.&#10;//&#10;&#10;#ifndef CORE_H&#10;#define CORE_H&#10;&#10;#include &lt;cstdint&gt;&#10;#include &lt;memory&gt; // For std::unique_ptr&#10;&#10;// 前向声明 Verilator 生成的类，以避免在头文件中包含大型 Verilator 头文件&#10;class Vcore;&#10;class VerilatedVcdC;&#10;&#10;namespace multiple {&#10;&#10;    // 调试信息结构体，用于从仿真核心获取状态&#10;    struct CoreDebugInfo {&#10;        uint32_t pc;&#10;        uint32_t inst;&#10;        uint32_t in1;&#10;        uint32_t in2;&#10;        uint32_t out;&#10;        uint32_t mem_addr;&#10;        uint32_t mem_data;&#10;        uint32_t gpr[32];&#10;        uint64_t inst_cnt;&#10;        uint64_t cycle_cnt;&#10;    };&#10;&#10;    // Verilator 仿真核心的封装类&#10;    class Sim_core {&#10;    private:&#10;        std::unique_ptr&lt;Vcore&gt; Top;&#10;        std::unique_ptr&lt;VerilatedVcdC&gt; tfp;&#10;&#10;        void toggle_clock();&#10;&#10;    public:&#10;        Sim_core();&#10;        ~Sim_core();&#10;&#10;        // 禁止拷贝和赋值，因为该类管理着独特的资源&#10;        Sim_core(const Sim_core&amp;) = delete;&#10;        Sim_core&amp; operator=(const Sim_core&amp;) = delete;&#10;&#10;        void sim_init();&#10;        CoreDebugInfo get_debug_info() const;&#10;        void run_inst_once();&#10;        int run_inst(int num_inst);&#10;    };&#10;&#10;} // namespace multiple&#10;&#10;#endif //CORE_H" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/include/v_include/VExample.h">
           <value>
             <PendingDiffInfo>
