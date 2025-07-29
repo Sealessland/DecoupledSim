@@ -105,45 +105,47 @@ namespace memory
             0xff010113,  // addi sp, sp, 0xff0
 
 
-            0x87fff137,  // lui sp, 0x87fff
-            0xff010113,  // addi sp, sp, 0xff0
-            0xa0000537,  // lui a0, 0xa0000
-            0x3f800593,  // li a1, 0x3f8
-            0x00b50633,  // add a2, a0, a1
-            0x04800793,  // li a5, 0x48
-            0x00f507b3,  // add a5, a0, a5
-            0x05200693,  // li a3, 'R'
-            0x00d62023,  // sw a3, 0(a2)
-            0x05400693,  // li a3, 'T'
-            0x00d62023,  // sw a3, 0(a2)
-            0x04300693,  // li a3, 'C'
-            0x00d62023,  // sw a3, 0(a2)
-            0x02000693,  // li a3, ' '
-            0x00d62023,  // sw a3, 0(a2)
-            0x04c00693,  // li a3, 'L'
-            0x00d62023,  // sw a3, 0(a2)
-            0x06f00693,  // li a3, 'o'
-            0x00d62023,  // sw a3, 0(a2)
-            0x03a00693,  // li a3, ':'
-            0x00d62023,  // sw a3, 0(a2)
-            0x02000693,  // li a3, ' '
-            0x00d62023,  // sw a3, 0(a2)
-            0x0007a683,  // lw a3, 0(a5)
-            0x00800713,  // li a4, 8
-            0x01c00393,  // li t2, 28
-            0x0006f29b,  // srl t0, a3, t2
-            0x00f2f293,  // andi t0, t0, 0xf
-            0x0092f313,  // addi t1, t0, -9
-            0x00031063,  // bgtz t1, is_letter
-            0x0302e313,  // addi t1, t0, '0'
-            0x0050006f,  // j print_char
-            0x0372e313,  // addi t1, t0, 'A'-10
-            0x00662023,  // sw t1, 0(a2)
-            0xfec3d393,  // addi t2, t2, -4
-            0xfff71ee3,  // bnez a4, print_hex_loop_start
-            0x00a00693,  // li a3, 10
-            0x00d62023,  // sw a3, 0(a2)
-            0x0000006f,  // j .
+
+
+                0x87fff137,  // lui sp, 0x87fff
+                0xff010113,  // addi sp, sp, 0xff0
+                0xa0000537,  // lui a0, 0xa0000
+                0x3f800593,  // li a1, 0x3f8
+                0x00b50633,  // add a2, a0, a1
+                0x04800793,  // li a5, 0x48
+                0x00f507b3,  // add a5, a0, a5
+                0x05200693,  // li a3, 'R'
+                0x00d62023,  // sw a3, 0(a2)
+                0x05400693,  // li a3, 'T'
+                0x00d62023,  // sw a3, 0(a2)
+                0x04300693,  // li a3, 'C'
+                0x00d62023,  // sw a3, 0(a2)
+                0x02000693,  // li a3, ' '
+                0x00d62023,  // sw a3, 0(a2)
+                0x04c00693,  // li a3, 'L'
+                0x00d62023,  // sw a3, 0(a2)
+                0x06f00693,  // li a3, 'o'
+                0x00d62023,  // sw a3, 0(a2)
+                0x03a00693,  // li a3, ':'
+                0x00d62023,  // sw a3, 0(a2)
+                0x02000693,  // li a3, ' '
+                0x00d62023,  // sw a3, 0(a2)
+                0x0007a683,  // lw a3, 0(a5)
+                0x00800713,  // li a4, 8
+                0x01c00393,  // li t2, 28
+                0x0006f29b,  // srl t0, a3, t2
+                0x00f2f293,  // andi t0, t0, 0xf
+                0x0092f313,  // addi t1, t0, -9
+                0x00031063,  // bgtz t1, is_letter
+                0x0302e313,  // addi t1, t0, '0'
+                0x0050006f,  // j print_char
+                0x0372e313,  // addi t1, t0, 'A'-10
+                0x00662023,  // sw t1, 0(a2)
+                0xfec3d393,  // addi t2, t2, -4
+                0xfff71ee3,  // bnez a4, print_hex_loop_start
+                0x00a00693,  // li a3, 10
+                0x00d62023,  // sw a3, 0(a2)
+
         };
 
         size_t instr_count = std::size(default_img);

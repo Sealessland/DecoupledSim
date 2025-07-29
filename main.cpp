@@ -48,7 +48,7 @@ int main(int argc, char* argv[]) {
 
     // 3. 运行单条指令并打印状态
     std::cout << "\nRunning a single instruction..." << std::endl;
-    core.run_cycle(5);
+    core.run_inst(5);
     std::cout << "Instruction finished." << std::endl;
 
     // 获取并打印执行第一条指令后的调试信息
@@ -58,8 +58,8 @@ int main(int argc, char* argv[]) {
     // 4. 批量运行多条指令
     const int num_instructions_to_run = 115;
     std::cout << "\nRunning " << num_instructions_to_run << " more instructions..." << std::endl;
-    int executed_count = core.run_cycle(num_instructions_to_run);
-    std::cout << "Finished running " << executed_count << " cycles." << std::endl;
+    int executed_count = core.run_inst(num_instructions_to_run);
+    std::cout << "Finished running " << executed_count << " insts." << std::endl;
 
     // 获取并打印最终的调试信息
     debug_info = core.get_debug_info();
