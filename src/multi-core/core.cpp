@@ -58,9 +58,9 @@ namespace multiple {
         info.inst = Top->io_debugInst;
         info.in1 = Top->io_debugin1;
         info.in2 = Top->io_debugin2;
-        info.out = Top->io_debugout1;
-        info.mem_addr = Top->io_debugmemaddr;
-        info.mem_data = Top->io_debugmemdata;
+        // info.out = Top->io_debugout1;
+        // info.mem_addr = Top->io_debugmemaddr;
+        // info.mem_data = Top->io_debugmemdata;
         // 如果 Verilog 模块提供了 GPR 的调试接口，可以取消下面的注释
         // for (int i = 0; i < 32; ++i) {
         //     info.gpr[i] = Top->io_debugGPR[i];

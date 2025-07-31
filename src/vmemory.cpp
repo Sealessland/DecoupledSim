@@ -102,49 +102,40 @@ namespace memory
     {
         const uint32_t default_img[] = {
 
-            0xff010113,  // addi sp, sp, 0xff0
-
-
-
-
-                0x87fff137,  // lui sp, 0x87fff
-                0xff010113,  // addi sp, sp, 0xff0
-                0xa0000537,  // lui a0, 0xa0000
-                0x3f800593,  // li a1, 0x3f8
-                0x00b50633,  // add a2, a0, a1
-                0x04800793,  // li a5, 0x48
-                0x00f507b3,  // add a5, a0, a5
-                0x05200693,  // li a3, 'R'
-                0x00d62023,  // sw a3, 0(a2)
-                0x05400693,  // li a3, 'T'
-                0x00d62023,  // sw a3, 0(a2)
-                0x04300693,  // li a3, 'C'
-                0x00d62023,  // sw a3, 0(a2)
-                0x02000693,  // li a3, ' '
-                0x00d62023,  // sw a3, 0(a2)
-                0x04c00693,  // li a3, 'L'
-                0x00d62023,  // sw a3, 0(a2)
-                0x06f00693,  // li a3, 'o'
-                0x00d62023,  // sw a3, 0(a2)
-                0x03a00693,  // li a3, ':'
-                0x00d62023,  // sw a3, 0(a2)
-                0x02000693,  // li a3, ' '
-                0x00d62023,  // sw a3, 0(a2)
-                0x0007a683,  // lw a3, 0(a5)
-                0x00800713,  // li a4, 8
-                0x01c00393,  // li t2, 28
-                0x0006f29b,  // srl t0, a3, t2
-                0x00f2f293,  // andi t0, t0, 0xf
-                0x0092f313,  // addi t1, t0, -9
-                0x00031063,  // bgtz t1, is_letter
-                0x0302e313,  // addi t1, t0, '0'
-                0x0050006f,  // j print_char
-                0x0372e313,  // addi t1, t0, 'A'-10
-                0x00662023,  // sw t1, 0(a2)
-                0xfec3d393,  // addi t2, t2, -4
-                0xfff71ee3,  // bnez a4, print_hex_loop_start
-                0x00a00693,  // li a3, 10
-                0x00d62023,  // sw a3, 0(a2)
+            // 依次将1~31号寄存器填充为其序号
+            0x00100093, // addi x1, x0, 1
+            0x00200113, // addi x2, x0, 2
+            0x00300193, // addi x3, x0, 3
+            0x00400213, // addi x4, x0, 4
+            0x00000297, // auipc x5, 0x0   // 第32条：x5 = pc + 0（假设此时pc为当前指令地址）
+            0x005283b3, // add x7, x5, x5  // 第33条：x7 = x5 + x5
+            0x00500293, // addi x5, x0, 5
+            0x00600313, // addi x6, x0, 6
+            0x00700393, // addi x7, x0, 7
+            0x00800413, // addi x8, x0, 8
+            0x00900493, // addi x9, x0, 9
+            0x00a00513, // addi x10, x0, 10
+            0x00b00593, // addi x11, x0, 11
+            0x00c00613, // addi x12, x0, 12
+            0x00d00693, // addi x13, x0, 13
+            0x00e00713, // addi x14, x0, 14
+            0x00f00793, // addi x15, x0, 15
+            0x01000813, // addi x16, x0, 16
+            0x01100893, // addi x17, x0, 17
+            0x01200913, // addi x18, x0, 18
+            0x01300993, // addi x19, x0, 19
+            0x01400a13, // addi x20, x0, 20
+            0x01500a93, // addi x21, x0, 21
+            0x01600b13, // addi x22, x0, 22
+            0x01700b93, // addi x23, x0, 23
+            0x01800c13, // addi x24, x0, 24
+            0x01900c93, // addi x25, x0, 25
+            0x01a00d13, // addi x26, x0, 26
+            0x01b00d93, // addi x27, x0, 27
+            0x01c00e13, // addi x28, x0, 28
+            0x01d00e93, // addi x29, x0, 29
+            0x01e00f13, // addi x30, x0, 30
+            0x01f00f93  // addi x31, x0, 31
 
         };
 
@@ -163,10 +154,15 @@ namespace memory
 } // namespace memory
 
 // C-style interface for Verilator DPI-C
-extern "C" uint32_t mem_read(int addr) {
-    std::cout << "mem_read: addr=0x" << std::hex << addr << std::endl;
-    // Always read a full 4-byte word; byte selection is handled by the Verilog side
-    return memory::get_memory().read(static_cast<uint32_t>(addr), 4);
+extern "C" void mem_read(int addr, int* data) {
+    if (addr < 0x80000000 || addr > 0x8FFFFFFF) {
+        std::cerr << "Error: Invalid memory address 0x" << std::hex << addr << std::dec << std::endl;
+        *data = 0; // Set data to 0 on error
+        return;
+    }
+    uint32_t read_val = memory::get_memory().read(static_cast<uint32_t>(addr), 4);
+    std::cout << "mem_read: addr=0x" << std::hex << addr << ", data=0x" << read_val << std::dec << std::endl;
+    *data = read_val;
 }
 
 extern "C" void mem_write(int addr, int data) {
