@@ -45,15 +45,6 @@
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/src/multi-core/cfg.cpp">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/src/multi-core/cfg.cpp" />
-              <option name="originalContent" value="//&#10;// Created by sealessland on 2025/7/27.&#10;//&#10;&#10;#include &quot;cfg.h&quot;&#10;#include &lt;string&gt;&#10;namespace multiple {&#10;    struct cfg&#10;    {   static constexpr bool time_analysisenabled = true; // 调试模式启用&#10;        static constexpr bool diff_enaled = true;  // 差分测试启用&#10;        static constexpr bool trace_enabled = true; // 波形追踪启用&#10;        static constexpr bool inst_trace_enabled = true; // 指令追踪启用&#10;        static constexpr bool mem_trace_enabled = true; // 内存追踪启用&#10;        std::string diff_ref_path = &quot;&quot;; // 差分测试参考路径&#10;        std::string wave_file = &quot;wave.vcd&quot;; // 波形文件名&#10;    };&#10;} // multiple" />
-              <option name="updatedContent" value="//&#10;// Created by sealessland on 2025/7/27.&#10;//&#10;&#10;#include &quot;AdaptSim/multicore/cfg.h&quot; // 包含头文件以获取声明&#10;&#10;namespace multiple {&#10;    // 定义在 cfg.h 中声明的全局配置实例&#10;    cfg cfg_inst;&#10;} // multiple" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/tests/test_comprehensive.cpp">
           <value>
             <PendingDiffInfo>
