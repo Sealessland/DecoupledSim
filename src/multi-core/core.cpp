@@ -12,6 +12,8 @@
 #include "Vcore___024root.h"
 #include "verilated.h"
 #include "verilated_vcd_c.h"
+#include "utils/difftest.h"
+#include "Vcore___024root.h" // 包含Verilator生成的内部头文件
 
 namespace multiple {
 
@@ -99,5 +101,45 @@ namespace multiple {
         }
         return i; // 返回实际执行的周期数
     }
+    utils::diff_context_t Sim_core::get_diff_info() { // 建议设为 const 函数
+        utils::diff_context_t context{};
+        context.pc = Top->io_debugPC;
 
+        // 从Verilator内部信号逐一读取GPRs
+        // 注意：x0/rf_0 物理上可能不存在，但为保持接口一致性，通常会赋值为0
+        context.gpr[0]  = 0; // RISC-V x0 is always zero
+        context.gpr[1]  = Top->rootp->core__DOT__RF__DOT__rf_1;
+        context.gpr[2]  = Top->rootp->core__DOT__RF__DOT__rf_2;
+        context.gpr[3]  = Top->rootp->core__DOT__RF__DOT__rf_3;
+        context.gpr[4]  = Top->rootp->core__DOT__RF__DOT__rf_4;
+        context.gpr[5]  = Top->rootp->core__DOT__RF__DOT__rf_5;
+        context.gpr[6]  = Top->rootp->core__DOT__RF__DOT__rf_6;
+        context.gpr[7]  = Top->rootp->core__DOT__RF__DOT__rf_7;
+        context.gpr[8]  = Top->rootp->core__DOT__RF__DOT__rf_8;
+        context.gpr[9]  = Top->rootp->core__DOT__RF__DOT__rf_9;
+        context.gpr[10] = Top->rootp->core__DOT__RF__DOT__rf_10;
+        context.gpr[11] = Top->rootp->core__DOT__RF__DOT__rf_11;
+        context.gpr[12] = Top->rootp->core__DOT__RF__DOT__rf_12;
+        context.gpr[13] = Top->rootp->core__DOT__RF__DOT__rf_13;
+        context.gpr[14] = Top->rootp->core__DOT__RF__DOT__rf_14;
+        context.gpr[15] = Top->rootp->core__DOT__RF__DOT__rf_15;
+        context.gpr[16] = Top->rootp->core__DOT__RF__DOT__rf_16;
+        context.gpr[17] = Top->rootp->core__DOT__RF__DOT__rf_17;
+        context.gpr[18] = Top->rootp->core__DOT__RF__DOT__rf_18;
+        context.gpr[19] = Top->rootp->core__DOT__RF__DOT__rf_19;
+        context.gpr[20] = Top->rootp->core__DOT__RF__DOT__rf_20;
+        context.gpr[21] = Top->rootp->core__DOT__RF__DOT__rf_21;
+        context.gpr[22] = Top->rootp->core__DOT__RF__DOT__rf_22;
+        context.gpr[23] = Top->rootp->core__DOT__RF__DOT__rf_23;
+        context.gpr[24] = Top->rootp->core__DOT__RF__DOT__rf_24;
+        context.gpr[25] = Top->rootp->core__DOT__RF__DOT__rf_25;
+        context.gpr[26] = Top->rootp->core__DOT__RF__DOT__rf_26;
+        context.gpr[27] = Top->rootp->core__DOT__RF__DOT__rf_27;
+        context.gpr[28] = Top->rootp->core__DOT__RF__DOT__rf_28;
+        context.gpr[29] = Top->rootp->core__DOT__RF__DOT__rf_29;
+        context.gpr[30] = Top->rootp->core__DOT__RF__DOT__rf_30;
+        context.gpr[31] = Top->rootp->core__DOT__RF__DOT__rf_31;
+
+        return context;
+    }
 } // namespace multiple

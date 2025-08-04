@@ -7,6 +7,7 @@
 
 #include <cstdint>
 #include <memory> // For std::unique_ptr
+#include "utils/difftest.h"
 
 // 前向声明 Verilator 生成的类，以避免在头文件中包含大型 Verilator 头文件
 class Vcore;
@@ -49,6 +50,8 @@ namespace multiple {
         void run_inst_once();
         int run_inst(int num_inst);
         int run_cycle(int num_cycle);
+        utils::diff_context_t get_diff_info();
+
     };
 
 } // namespace multiple

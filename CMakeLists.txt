@@ -15,6 +15,7 @@ link_directories(${PROJECT_SOURCE_DIR}/lib)
 
 # 查找所有源文件并创建库
 file(GLOB SRC_FILES "src/*.cpp" "src/multi-core/*.cpp")
+file(GLOB UTIL_FILES "src/utils/*.cpp")
 file(GLOB_RECURSE SRC_FILES_ADAPT_SIM "src/AdaptSim/*.cpp")
 file(GLOB_RECURSE SRC_FILES_UTILS "src/AdaptSim/uitils/*.cpp")
 file(GLOB_RECURSE SRC_FILES_VLTSTD "include/v_include/v_include/vltstd/*.cpp")
@@ -22,7 +23,7 @@ file(GLOB_RECURSE SRC_FILES_GTKWAVE "include/v_include/v_include/gtkwave/*.cpp")
 file(GLOB_RECURSE SRC_FILES_V_INCLUDE "include/v_include/v_include/*.cpp")
 file(GLOB_RECURSE SRC_FILES_V_MODEL "include/v_include/*.cpp")
 file(GLOB_RECURSE SRC_FILES_V_MODEL_VCORE "include/model_include/v_model/Vcore__ALL.cpp")
-add_library(AdaptSimLib ${SRC_FILES} ${SRC_FILES_ADAPT_SIM} ${SRC_FILES_UTILS} ${SRC_FILES_VLTSTD} ${SRC_FILES_GTKWAVE} ${SRC_FILES_V_INCLUDE} ${SRC_FILES_V_MODEL} ${SRC_FILES_V_MODEL_VCORE} ${SRC_FILES_V_MODEL_VCORE})
+add_library(AdaptSimLib ${SRC_FILES} ${SRC_FILES_ADAPT_SIM} ${SRC_FILES_UTILS} ${SRC_FILES_VLTSTD} ${SRC_FILES_GTKWAVE} ${SRC_FILES_V_INCLUDE} ${SRC_FILES_V_MODEL} ${SRC_FILES_V_MODEL_VCORE} ${SRC_FILES_V_MODEL_VCORE} ${UTIL_FILES})
 # 设置库的编译选项
 
 

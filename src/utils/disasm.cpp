@@ -8,7 +8,7 @@
 #include <vector>
 #include <iomanip>
 #include <sstream>
-#include <disasm.h>
+#include <AdaptSim/utils/disasm.h>
 // 颜色定义
 #define ANSI_FG_RED     "\33[1;31m"
 #define ANSI_FG_GREEN   "\33[1;32m"

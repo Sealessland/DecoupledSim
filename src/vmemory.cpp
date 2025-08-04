@@ -9,6 +9,8 @@
 #include <vector>
 #include <iomanip> // For std::hex, std::dec
 
+#include "cfg.h"
+
 namespace memory
 {
     // Define the single global instance of memory
@@ -155,11 +157,6 @@ namespace memory
 
 // C-style interface for Verilator DPI-C
 extern "C" void mem_read(int addr, int* data) {
-    if (addr < 0x80000000 || addr > 0x8FFFFFFF) {
-        std::cerr << "Error: Invalid memory address 0x" << std::hex << addr << std::dec << std::endl;
-        *data = 0; // Set data to 0 on error
-        return;
-    }
     uint32_t read_val = memory::get_memory().read(static_cast<uint32_t>(addr), 4);
     std::cout << "mem_read: addr=0x" << std::hex << addr << ", data=0x" << read_val << std::dec << std::endl;
     *data = read_val;
@@ -169,22 +166,3 @@ extern "C" void mem_write(int addr, int data) {
     std::cout << "mem_write: addr=0x" << std::hex << addr << ", data=0x" << data << std::endl;
     memory::get_memory().write(static_cast<uint32_t>(addr), 4, static_cast<uint32_t>(data));
 }
-
-// C 接口实现，供 Verilator 的 DPI-C 调用
-// extern "C" void inst_mem_read(int addr, int len, int* data) {
-//     *data = static_cast<int>(memory::get_memory().read(static_cast<uint32_t>(addr), static_cast<uint32_t>(len)));
-//     // 可选的调试输出
-//     // std::cout << "指令内存读取: addr=0x" << std::hex << addr << ", len=" << len << ", data=0x" << *data << std::dec << std::endl;
-// }
-//
-// extern "C" void data_mem_read(int addr, int len, int* data) {
-//     *data = static_cast<int>(memory::get_memory().read(static_cast<uint32_t>(addr), static_cast<uint32_t>(len)));
-//     // 可选的调试输出
-//     // std::cout << "数据内存读取: addr=0x" << std::hex << addr << ", len=" << len << ", data=0x" << *data << std::dec << std::endl;
-// }
-//
-// extern "C" void data_mem_write(int addr, int len, int data) {
-//     memory::get_memory().write(static_cast<uint32_t>(addr), static_cast<uint32_t>(len), static_cast<uint32_t>(data));
-//     // 可选的调试输出
-//     // std::cout << "数据内存写入: addr=0x" << std::hex << addr << ", len=" << len << ", data=0x" << data << std::dec << std::endl;
-// }
